@@ -1,0 +1,42 @@
+.container{
+    margin: auto;
+}
+
+.header{
+    background: #c0c919;
+    margin: -.3em 0 0 -.3em;
+    padding: 1em 1em;
+}
+
+.section{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li{
+    list-style: none;
+    padding: 0.5em;
+}
+
+.main{
+    display: flex;
+    padding: auto;
+}
+
+.infodiv{
+    padding-left: 1em;
+}
+
+.prsentdiv, .homelink{
+    padding: 1em;
+}
+
+button{  
+    margin: 0.5em;  
+    background: #3b76dc; 
+    color: white;
+    border-radius: 0.5em;
+    border-style: none;
+    padding: 0.5em;
+    font-weight: 600;
+}
