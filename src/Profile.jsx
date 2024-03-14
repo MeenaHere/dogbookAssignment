@@ -3,22 +3,22 @@ import DogImage from "./DogImage";
 import dogservices from "./dogservices";
 
 
-function Profile({ dog, setPage, dogs, setDogs }) {
-  let checkBoxValue = dog.present ? "Absent" : "Present"  
-  const presentHandler = async () => {
-    const id = dog.id
-    const findedDog = dogs.find((d) => d.id === dog.id);
-    console.log(findedDog)
-    const newDog = { ...findedDog, present: !findedDog.present };
-        console.log("newDog",newDog)
+function Profile({ dog, setPage, setDog }) {
 
-    const data = await dogservices.change(id, newDog);
+  const presentHandler = async (event) => {
+    event.preventDefault()
+    const id = dog.id
+    console.log("dog before change", dog)
+
+    const data = await dogservices.change(id, { ...dog, present: !dog.present });
     console.log("data", data)
-    setDogs(dogs.map((dog) => (dog.id === id ? dog : data)));
-    checkBoxValue = dog.present ? "Absent" : "Present"    
+    setDog({ ...dog, present: data.present })
+    
   }
 
- 
+  const deleteHandler = () => {
+   
+ }
   
   const editHandler = () => {
     setPage("Edit")    
@@ -26,6 +26,7 @@ function Profile({ dog, setPage, dogs, setDogs }) {
   return (
     <>
       <h1 className="header">🐾Dogbook</h1>
+      <h2>{dog.name }</h2>
       <div className="main">
         <div className="imgdiv">
           <DogImage />
@@ -34,12 +35,18 @@ function Profile({ dog, setPage, dogs, setDogs }) {
           <p>Name: {dog.name}  <a href="#" onClick={editHandler}> Edit</a></p>
           <p>Nick: {dog.nick}</p>
           <p>Age: {dog.age}</p>
-          <p>Bio: {dog.bio}</p>
-          <p>Friend</p>
+          <p>Bio: {dog.bio}</p><br />Friends:
+          <ul>
+          {dog.friends.map(friend => 
+            <li key={friend.id}>{friend.friendName}
+              <button onClick={() => deleteHandler(dog.id)}>Delete</button>
+            </li>
+          )}       
+        </ul>      
         </div>
         <div className="prsentdiv">
-          <input type="checkbox" name="present" value={dog.present} onClick={presentHandler} defaultChecked={dog.present}/> {checkBoxValue}</div>
-        <a href="#" className="homelink" onClick={() => setPage("Start")}>  Go to Home Page</a>
+          <input type="checkbox" name="present" onChange={presentHandler} checked={dog.present}/> Present</div>
+        <a href="#" onClick={() => setPage("Start")}>  Go to Home Page</a>
       </div>
     </>
   );

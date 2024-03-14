@@ -19,17 +19,17 @@ function App() {
       setDogs(dogs);      
     }
     main();
-  }, []);
+  }, [dog]);
 
   switch (page) {
     case "Start":
-      return <Start setDog={setDog} dogs={dogs} setPage={setPage} setDogs={setDogs} />;
+      return <Start dog={dog} setDog={setDog} dogs={dogs} setPage={setPage} setDogs={setDogs} />;
     case "Profile":
-      return <Profile dog={dog} setPage={setPage} dogs={dogs} setDogs={setDogs}/>;
+      return <Profile dog={dog} setPage={setPage} setDog={setDog}/>;
     case "Create":
-      return <Create dog={dog} setPage={setPage} setdogs={setDogs} setDog={setDog} />;
+      return <Create setPage={setPage} setDogs={setDogs} dogs={dogs} />;
     case "Edit":
-      return <Edit dog={dog} setPage={setPage} dogs={dogs} setDogs={setDogs} />;
+      return <Edit dog={dog} setDog={setDog} setPage={setPage} dogs={dogs} setDogs={setDogs} />;
     default:
       return <Start />;
   }

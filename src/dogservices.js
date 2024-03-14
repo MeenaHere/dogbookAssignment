@@ -8,8 +8,6 @@ const getAll = async () => {
     if (resp.status !== 200) {
       throw new Error("Malfunctioning server GET request");
     }
-        console.log("Dogs from db:",resp.data)
-
     return resp.data;
   } catch (err) {
     console.error(err.message);

@@ -4,6 +4,7 @@ import dogservices from "./dogservices";
 import DogImage from "./DogImage";
 
 function Start({ setDog, setPage, dogs, setDogs }) {
+  console.log("startpage",dogs)
   const setDogPage = (dog) => {
     setDog(dog)
     setPage("Profile")
@@ -19,12 +20,13 @@ function Start({ setDog, setPage, dogs, setDogs }) {
   return (
       <div className="container">
       <h1 className="header">🐾Dogbook</h1>
+      <h2>Users</h2>
       <div className="main">
         <ul className="section">
           {dogs.map(dog => 
             <li key={dog.id} className="dog">
               <DogImage />
-              <a href="#" onClick={() => setDogPage(dog)} alt="dog" >@{dog.nick}</a>
+              <a href="#" className={dog.present?"green" : "red"} onClick={() => setDogPage(dog)} alt="dog" >@{dog.nick}</a>
               <button onClick={() => deleteHandler(dog.id)}>Delete</button>
             </li>
           )}       
