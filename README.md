@@ -1,8 +1,19 @@
-# React + Vite
+# Dogbook made with react + vite + mongoDB
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dogbook is an administrative tool designed for dog daycare centers to manage which dogs are currently in the daycare and maintain their friendship connections. Users can create profiles for dogs, upload profile pictures, provide short descriptions, and add other dogs to their friend list.
 
-Currently, two official plugins are available:
+To get started with Dogbook, follow these steps:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Navigate to the root directory of the project and install all dependencies for the frontend by running `npm install`
+
+### 2. Now run `npm run dev` for the frontend
+
+### 3. Open another terminal and navigate to the server directory within the Dogbook project `cd server`
+
+### 4. Run `npm install` to install all the backend dependencies
+
+### 5. Now run `nodemon server.js`
+
+## Navigate to http://localhost:9000/dogs to access Dogbook.
+
+###Enjoy our Dogbook to manage your dog daycare!!!

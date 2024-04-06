@@ -10,7 +10,20 @@ const getAll = async () => {
     }
     return resp.data;
   } catch (err) {
-    console.error(err.message);
+    console.error("Error fetching data:", err);
+    return [];
+  }
+};
+
+const getOne = async (id) => {
+  try {
+    const resp = await axios.get(`${url}/${id}`);
+    if (resp.status !== 200) {
+      throw new Error("Malfunctioning server GET request");
+    }
+    return resp.data;
+  } catch (err) {
+    console.error("Error fetching data:", err);
     return [];
   }
 };
@@ -23,20 +36,7 @@ const create = async (dog) => {
     }
     return resp.data;
   } catch (err) {
-    console.error(err.message);
-    return null;
-  }
-};
-
-const remove = async (id) => {
-  try {
-    const resp = await axios.delete(`${url}/${id}`);
-    if (resp.status !== 200) {
-      throw new Error("Malfunctioning server DELETE request");
-    }
-    return resp.data;
-  } catch (err) {
-    console.error(err.message);
+    console.error("Error adding data:", err);
     return null;
   }
 };
@@ -49,9 +49,22 @@ const change = async (id, dogData) => {
     }
     return resp.data;
   } catch (err) {
-    console.error(err.message);
+    console.error("Error updating data:", err);
     return null;
   }
 };
 
-export default { getAll, create, remove, change };
+const remove = async (id) => {
+  try {
+    const resp = await axios.delete(`${url}/${id}`);
+    if (resp.status !== 200) {
+      throw new Error("Malfunctioning server DELETE request");
+    }
+    return resp.data;
+  } catch (err) {
+    console.error("Error deleting data:", err);
+    return null;
+  }
+};
+
+export { getAll, getOne, create, remove, change };

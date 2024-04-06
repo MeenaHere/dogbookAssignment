@@ -1,50 +1,74 @@
-.container{
-    margin: auto;
+.container {
+  margin: auto;
 }
 
-.header{
-    background: #c0c919;
-    margin: -.3em 0 0 -.3em;
-    padding: 1em 1em;
+.cinzel {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  color: #3b76dc;
 }
 
-.section{
-    display: flex;
-    flex-wrap: wrap;
+.playball-regular {
+  font-family: "Playball", cursive;
+  font-weight: 800;
+  font-style: normal;
 }
 
-li{
-    list-style: none;
-    padding: 0.5em;
+.header {
+  background: #3b76dc;
+  margin: -0.3em 0 0 -0.3em;
+  padding: 1em 1em;
+  color: white;
 }
 
-.main{
-    display: flex;
-    padding: auto;
+.link {
+  color: white;
+  text-decoration: none;
 }
 
-.infodiv{
-    padding-left: 1em;
+.section {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.prsentdiv, .homelink{
-    padding: 1em;
+.dogs-list {
+  list-style: none;
+  padding: 0.5em;
 }
 
-button{  
-    margin: 0.5em;  
-    background: #3b76dc; 
-    color: white;
-    border-radius: 0.5em;
-    border-style: none;
-    padding: 0.5em;
-    font-weight: 600;
+.main {
+  display: flex;
+  padding: auto;
 }
 
-.red{
-    color:red
+.infodiv {
+  padding-left: 1em;
+}
+
+.prsentdiv,
+.homelink {
+  padding: 1em;
+}
+
+button {
+  margin: 0.5em;
+  background: #3b76dc;
+  color: white;
+  border-radius: 0.5em;
+  border-style: none;
+  padding: 0.5em;
+  font-weight: 600;
+}
+.form-group {
+  margin-bottom: 10px;
+}
+
+.red {
+  color: red;
 }
 
 .green {
-    color: green
+  color: green;
 }

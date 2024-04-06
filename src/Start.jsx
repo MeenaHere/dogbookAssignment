@@ -1,40 +1,67 @@
 /* eslint-disable react/prop-types */
 
-import dogservices from "./dogservices";
-import DogImage from "./DogImage";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import DogImage from "./components/dogImage/DogImage";
+import { DogsContext } from "./DogsProvider";
 
-function Start({ setDog, setPage, dogs, setDogs }) {
-  console.log("startpage",dogs)
-  const setDogPage = (dog) => {
-    setDog(dog)
-    setPage("Profile")
-  }
-  
-  const addDog = () => {
-    setPage("Create")
-  }
+function Start() {
+  const { getAll, remove } = useContext(DogsContext);
+  const [dogs, setDogs] = useState([]);
+
+  // Fetching all dogs and setting to dogs
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAll();
+        setDogs(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [getAll]);
+
+  // Handler to delete the selected dog
   const deleteHandler = async (id) => {
-    setDogs(dogs.filter((dog) => dog.id !== id));
-    await dogservices.remove(id);
+    try {
+      await remove(id);
+      setDogs(dogs.filter((dog) => dog.id !== id));
+    } catch (error) {
+      console.error("Error deleting dog:", error);
+    }
   };
+
   return (
-      <div className="container">
-      <h1 className="header">🐾Dogbook</h1>
-      <h2>Users</h2>
-      <div className="main">
+    <div className="container">
+      <h1 className="header cinzel">
+        <Link to="/dogs" className="link">
+          Dogbook🐾
+        </Link>
+      </h1>
+      <h2 className="cinzel">Users</h2>
+      <div className="main-profile">
         <ul className="section">
-          {dogs.map(dog => 
-            <li key={dog.id} className="dog">
+          {dogs.map((d) => (
+            <li key={d.id} className="dogs-list">
               <DogImage />
-              <a href="#" className={dog.present?"green" : "red"} onClick={() => setDogPage(dog)} alt="dog" >@{dog.nick}</a>
-              <button onClick={() => deleteHandler(dog.id)}>Delete</button>
+              <Link
+                to={`/dogs/profile/${d.id}`}
+                style={{ textDecoration: "none" }}
+                className={d.present ? "green" : "red"}
+              >
+                @{d.nick}
+              </Link>
+              <button onClick={() => deleteHandler(d.id)}> Delete </button>
             </li>
-          )}       
+          ))}
         </ul>
       </div>
-      <button onClick={addDog}>Add a new Dog</button>
+      <Link to="/dogs/create">
+        <button>Create a new Dog</button>
+      </Link>
     </div>
   );
 }
 
-export default Start
+export default Start;
